@@ -1,0 +1,34 @@
+version: "2"
+
+services:
+  nginx:
+    build:
+      context: ./services/nginx
+    volumes:
+      - letsencrypt_1:/etc/letsencrypt
+      - letsencrypt_2:/var/lib/letsencrypt
+    ports:
+      - 80:80
+      - 443:443
+    networks:
+      - nginx
+
+  cron:
+    build:
+      context: ./services/cron
+    volumes:
+      - /var/run/docker.sock:/var/run/docker.sock
+
+  certificate:
+    build:
+      context: ./services/certificate
+    volumes:
+      - letsencrypt_1:/etc/letsencrypt
+      - letsencrypt_2:/var/lib/letsencrypt
+
+networks:
+  nginx:
+
+volumes:
+  letsencrypt_1:
+  letsencrypt_2:
