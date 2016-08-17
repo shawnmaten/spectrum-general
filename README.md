@@ -1,4 +1,4 @@
-# Docker Compose Setup for spectrumatutsa.org General Services
+# Spectrum General Containers
 
 So far this only includes the webserver (to be used by other projects) and cron container to reissue the SSL certificate.
 
